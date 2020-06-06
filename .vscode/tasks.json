@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Build project",
+      "command": "make",
+      "args": [
+        "-s"
+      ],
+      "options": {
+        "env": {
+          "PROJECT_BASE": "${workspaceFolder}",
+          "MACCHINA_BASE": "${workspaceFolder}/macchina.io",
+          "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
+        }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Clean project",
+      "command": "make",
+      "args": [
+        "-s",
+        "clean"
+      ],
+      "options": {
+        "env": {
+          "PROJECT_BASE": "${workspaceFolder}",
+          "MACCHINA_BASE": "${workspaceFolder}/macchina.io",
+          "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
+        }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "RemoteGen",
+      "command": "${workspaceFolder}/RemoteGen.sh",
+      "osx": {
+        "args": [
+          "${file}",
+          "-Cclang"
+        ]
+      },
+      "linux": {
+        "args": [
+          "${file}",
+          "-Cgcc"
+        ]
+      },
+      "options": {
+        "env": {
+          "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
+        },
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}
