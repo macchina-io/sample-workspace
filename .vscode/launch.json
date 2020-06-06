@@ -1,7 +1,7 @@
 {
   "configurations": [
   {
-    "name": "macOS LLDB",
+    "name": "macOS LLDB (x86_64)",
     "type": "cppdbg",
     "request": "launch",
     "program": "${workspaceFolder}/macchina.io/server/bin/Darwin/x86_64/macchina",
@@ -13,10 +13,22 @@
     "MIMode": "lldb"
   },
   {
-    "name": "Linux GDB",
+    "name": "Linux GDB (x86_64)",
     "type": "cppdbg",
     "request": "launch",
     "program": "${workspaceFolder}/macchina.io/server/bin/Linux/x86_64/macchina",
+    "args": ["--config=${workspaceFolder}/etc/macchina.properties"],
+    "stopAtEntry": false,
+    "cwd": "${workspaceFolder}",
+    "environment": [{ "name": "POCO_ENABLE_DEBUGGER", "value": "1" }],
+    "externalConsole": false,
+    "MIMode": "lldb"
+  },
+  {
+    "name": "Linux GDB (armv7l)",
+    "type": "cppdbg",
+    "request": "launch",
+    "program": "${workspaceFolder}/macchina.io/server/bin/Linux/armv7l/macchina",
     "args": ["--config=${workspaceFolder}/etc/macchina.properties"],
     "stopAtEntry": false,
     "cwd": "${workspaceFolder}",

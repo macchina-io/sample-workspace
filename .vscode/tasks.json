@@ -3,7 +3,7 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "Build project",
+      "label": "Build workspace",
       "command": "make",
       "args": [
         "-s"
@@ -25,7 +25,7 @@
     },
     {
       "type": "shell",
-      "label": "Clean project",
+      "label": "Clean workspace",
       "command": "make",
       "args": [
         "-s",
@@ -37,6 +37,47 @@
           "MACCHINA_BASE": "${workspaceFolder}/macchina.io",
           "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
         }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "Build project",
+      "command": "make",
+      "args": [
+        "-s"
+      ],
+      "options": {
+        "env": {
+          "PROJECT_BASE": "${workspaceFolder}",
+          "MACCHINA_BASE": "${workspaceFolder}/macchina.io",
+          "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
+        },
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "Clean project",
+      "command": "make",
+      "args": [
+        "-s",
+        "clean"
+      ],
+      "options": {
+        "env": {
+          "PROJECT_BASE": "${workspaceFolder}",
+          "MACCHINA_BASE": "${workspaceFolder}/macchina.io",
+          "POCO_BASE": "${workspaceFolder}/macchina.io/platform"
+        },
+        "cwd": "${fileDirname}"
       },
       "problemMatcher": [
         "$gcc"
