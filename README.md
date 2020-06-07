@@ -1,6 +1,6 @@
-# sample-workspace
+# A Sample Workspace for a Project Based on macchina.io
 
-A sample workspace for a project based on macchina.io IoT Edge Device SDK.
+This repository contains a sample workspace for a project based on macchina.io IoT Edge Device SDK.
 This can be used as a template for your own projects.
 The workspace includes the macchina.io IoT Edge SDK sources via a Git submodule.
 The workspace includes one sample project, a simple implementation of a
@@ -69,8 +69,23 @@ $ make -s -j8
 ## Building in Visual Studio Code
 
 Select *Terminal > Run Build Task* from the menu bar.
+This should launch the *Build all* task defined in 
+[launch.json](.vscode/launch.json).
 
 # Running macchina.io
+
+Before running the first time, make sure to create the code cache
+directory (`var/cache/bundles`) first. This is not required on all platform, 
+but e.g. on Ubuntu the first launch will fail to start the bundles if that directory 
+does not exist. The reason for this is that directories specified in 
+`$LD_LIBRARY_PATH` that not exist prior to launching an executable will
+be ignored, even if they are created by the application. 
+
+To create the code cache directory:
+
+```
+$ mkdir -p var/cache/bundles
+```
 
 To run the release build from a Linux (x86_64) command line shell:
 
@@ -96,7 +111,13 @@ $ macchina.io/server/bin/Darwin/x86_64/macchina --config=etc/macchina.properties
 To debug your application in Visual Studio Code, a [launch.json](.vscode/launch.json) file is
 provided that will set up the necessary environment variables and launch the debug
 build of macchina.io with the configuration file in the `etc` directory.
+The [launch.json](.vscode/launch.json) contains multiple configurations, for macOS,
+Linux x86_64 and Linux armv7l. You will need to select the correct configuration
+for your system from the Debugger's configuration drop-down box in the *Run* view.
 To start debugging, select *Run > Start Debugging* from the menu bar.
 
+On Linux, make sure that the code cache directory (`var/cache/bundles`) exists before
+launching, otherwise starting most bundles will fail (see above for the details).
+
 On macOS, the [CodeLLDB](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
-extension is required for debugging to work.
+extension is required for debugging to work with Xcode's LLDB.
