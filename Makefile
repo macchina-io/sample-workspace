@@ -7,4 +7,4 @@
 .PHONY: clean all
 
 clean all:
-	$(MAKE) -C devices/LinuxThermal $(MAKECMDGOALS)
+	$(MAKE) -C devices $(MAKECMDGOALS)

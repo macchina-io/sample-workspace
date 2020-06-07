@@ -1,0 +1,28 @@
+basedir=`pwd`
+osname=`uname`
+osarch=`uname -m`
+export PROJECT_BASE="$basedir"
+export MACCHINA_BASE="$basedir/macchina.io"
+export MACCHINA_VERSION=`cat $MACCHINA_BASE/VERSION`
+export MACCHINA_CODECACHE="$PROJECT_BASE/var/cache/bundles"
+export POCO_BASE="$MACCHINA_BASE/platform"
+if [ $osname = "Darwin" ] ; then
+	export DYLD_LIBRARY_PATH=$MACCHINA_CODECACHE:$POCO_BASE/lib/$osname/$osarch:$DYLD_LIBRARY_PATH
+	libPath=$DYLD_LIBRARY_PATH
+	libPathVar="DYLD_LIBRARY_PATH"
+else
+	export LD_LIBRARY_PATH=$MACCHINA_CODECACHE:$POCO_BASE/lib/$osname/$osarch:$LD_LIBRARY_PATH
+	libPath=$LD_LIBRARY_PATH
+	libPathVar="LD_LIBRARY_PATH  "
+fi
+
+mkdir -p $MACCHINA_CODECACHE
+
+echo "macchina.io build environment set."
+echo ""
+echo "\$MACCHINA_BASE     = $MACCHINA_BASE"
+echo "\$PROJECT_BASE      = $PROJECT_BASE"
+echo "\$POCO_BASE         = $POCO_BASE"
+echo "\$MACCHINA_VERSION  = $MACCHINA_VERSION"
+echo "\$$libPathVar = $libPath"
+echo ""
