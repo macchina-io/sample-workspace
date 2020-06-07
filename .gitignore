@@ -123,4 +123,5 @@ platform/JS/V8/out/
 # Misc #
 ########
 server/data/
+var/
 
