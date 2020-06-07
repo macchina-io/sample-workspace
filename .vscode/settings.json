@@ -3,5 +3,10 @@
 	"editor.tabSize": 4,
 	"files.associations": {
 		"*.bndlspec": "xml"
+	},
+	"files.exclude": {
+        "**/.dep": true,
+        "**/bin": true,
+        "**/obj": true
     }
 }

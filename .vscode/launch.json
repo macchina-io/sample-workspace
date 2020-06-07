@@ -2,39 +2,47 @@
   "configurations": [
   {
     "name": "macOS LLDB (x86_64)",
-    "type": "cppdbg",
+    "type": "lldb",
     "request": "launch",
-    "program": "${workspaceFolder}/macchina.io/server/bin/Darwin/x86_64/macchina",
+    "program": "${workspaceFolder}/macchina.io/server/bin/Darwin/x86_64/macchinad",
     "args": ["--config=${workspaceFolder}/etc/macchina.properties"],
-    "stopAtEntry": false,
+    "stopOnEntry": false,
     "cwd": "${workspaceFolder}",
-    "environment": [{ "name": "POCO_ENABLE_DEBUGGER", "value": "1" }],
-    "externalConsole": false,
-    "MIMode": "lldb"
+    "env": {
+      "POCO_ENABLE_DEBUGGER": "1",
+      "DYLD_LIBRARY_PATH": "${workspaceFolder}/macchina.io/platform/lib/Darwin/x86_64"
+    },
+    "terminal": "external"
   },
   {
     "name": "Linux GDB (x86_64)",
     "type": "cppdbg",
     "request": "launch",
-    "program": "${workspaceFolder}/macchina.io/server/bin/Linux/x86_64/macchina",
+    "program": "${workspaceFolder}/macchina.io/server/bin/Linux/x86_64/macchinad",
     "args": ["--config=${workspaceFolder}/etc/macchina.properties"],
     "stopAtEntry": false,
     "cwd": "${workspaceFolder}",
-    "environment": [{ "name": "POCO_ENABLE_DEBUGGER", "value": "1" }],
+    "environment": [
+      { "name": "POCO_ENABLE_DEBUGGER", "value": "1" },
+      { "name": "LD_LIBRARY_PATH", "value": "${workspaceFolder}/macchina.io/platform/lib/Linux/x86_64:${workspaceFolder}/var/cache/bundles" }
+    ],
     "externalConsole": false,
-    "MIMode": "lldb"
+    "MIMode": "gdb"
   },
   {
     "name": "Linux GDB (armv7l)",
     "type": "cppdbg",
     "request": "launch",
-    "program": "${workspaceFolder}/macchina.io/server/bin/Linux/armv7l/macchina",
+    "program": "${workspaceFolder}/macchina.io/server/bin/Linux/armv7l/macchinad",
     "args": ["--config=${workspaceFolder}/etc/macchina.properties"],
     "stopAtEntry": false,
     "cwd": "${workspaceFolder}",
-    "environment": [{ "name": "POCO_ENABLE_DEBUGGER", "value": "1" }],
+    "environment": [
+      { "name": "POCO_ENABLE_DEBUGGER", "value": "1" },
+      { "name": "LD_LIBRARY_PATH", "value": "${workspaceFolder}/macchina.io/platform/lib/Linux/armv7l:${workspaceFolder}/var/cache/bundles" }
+    ],
     "externalConsole": false,
-    "MIMode": "lldb"
+    "MIMode": "gdb"
   }
   ]
 }
